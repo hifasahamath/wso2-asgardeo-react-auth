@@ -52,7 +52,7 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
             onClick={handleSignIn}
             disabled={isRedirecting}
             id="signin-button"
-            className="w-full sm:w-auto min-w-[200px] px-7 py-4 rounded-xl bg-gradient-to-r from-wso2-500 to-wso2-600 hover:from-wso2-600 hover:to-wso2-700 text-white font-semibold text-base shadow-xl shadow-wso2-500/25 hover:shadow-wso2-500/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 cursor-pointer group"
+            className="w-full sm:w-auto min-w-[260px] px-8 py-4 rounded-xl bg-gradient-to-r from-wso2-500 to-wso2-600 hover:from-wso2-600 hover:to-wso2-700 text-white font-semibold text-base shadow-xl shadow-wso2-500/25 hover:shadow-wso2-500/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 cursor-pointer group"
           >
             {isRedirecting ? (
               <>
@@ -68,24 +68,14 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
             )}
           </button>
 
-          <button
-            onClick={handleSignIn}
-            disabled={isRedirecting}
-            id="create-account-btn"
-            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm border border-slate-700/80 hover:border-wso2-500/50 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
-          >
-            <UserPlus className="w-4 h-4 text-wso2-400 group-hover:scale-110 transition-transform" />
-            <span>Create Account / Sign Up</span>
-          </button>
-
           {onPreviewDemo && (
             <button
               onClick={onPreviewDemo}
               id="preview-demo-btn"
-              className="w-full sm:w-auto px-5 py-4 rounded-xl bg-slate-900/60 hover:bg-slate-850 text-slate-400 hover:text-slate-200 font-medium text-xs border border-slate-800 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-300 hover:text-white font-medium text-sm border border-slate-800 hover:border-slate-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer"
             >
-              <Cpu className="w-3.5 h-3.5 text-sky-400" />
-              <span>Preview Demo State</span>
+              <Cpu className="w-4 h-4 text-sky-400" />
+              <span>Preview Authenticated State</span>
             </button>
           )}
         </div>
