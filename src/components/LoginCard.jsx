@@ -26,6 +26,17 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
     }
   };
 
+  // Derive Asgardeo organization direct registration URL
+  const baseUrl = import.meta.env.VITE_ASGARDEO_BASE_URL || '';
+  const orgMatch = baseUrl.match(/\/t\/([^/]+)/);
+  const orgName = orgMatch ? orgMatch[1] : 'hifasahamath';
+  const registerUrl = `https://accounts.asgardeo.io/t/${orgName}/accounts/register`;
+
+  const handleRegister = () => {
+    setIsRedirecting(true);
+    window.location.href = registerUrl;
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
       {/* Hero Section */}
@@ -69,7 +80,7 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
           </button>
 
           <button
-            onClick={handleSignIn}
+            onClick={handleRegister}
             disabled={isRedirecting}
             id="create-account-btn"
             className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm border border-slate-700/80 hover:border-wso2-500/50 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
@@ -89,12 +100,6 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
             </button>
           )}
         </div>
-
-        {/* User Onboarding Quick Tip */}
-        <p className="text-xs text-slate-400 pt-2 flex items-center justify-center gap-1.5 flex-wrap">
-          <Sparkles className="w-3.5 h-3.5 text-wso2-400" />
-          <span>New user? On the Asgardeo portal, click <strong className="text-wso2-400 font-semibold underline underline-offset-2">"Register"</strong> right below the Sign In button.</span>
-        </p>
       </div>
 
       {/* Feature Highlights Grid */}
