@@ -16,7 +16,7 @@ Designed and submitted as an official contribution showcase for the **WSO2 Inter
 ## 🌐 Live Demo & Repository
 
 - **GitHub Repository**: [https://github.com/hifasahamath/wso2-asgardeo-react-auth.git](https://github.com/hifasahamath/wso2-asgardeo-react-auth.git)
-- **Live Production URL**: *[Deploying to Vercel — Placeholder: `https://wso2-asgardeo-react-auth.vercel.app`]*
+- **Live Production URL**: [https://wso2-asgardeo-react-auth.vercel.app](https://wso2-asgardeo-react-auth.vercel.app)
 
 ---
 
