@@ -26,20 +26,6 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
     }
   };
 
-  // Derive Asgardeo organization direct registration URL with application context
-  const baseUrl = import.meta.env.VITE_ASGARDEO_BASE_URL || '';
-  const clientId = import.meta.env.VITE_ASGARDEO_CLIENT_ID || '';
-  const orgMatch = baseUrl.match(/\/t\/([^/]+)/);
-  const orgName = orgMatch ? orgMatch[1] : 'hifasahamath';
-  const registerUrl = clientId 
-    ? `https://accounts.asgardeo.io/t/${orgName}/accounts/register?client_id=${clientId}`
-    : `https://accounts.asgardeo.io/t/${orgName}/accounts/register`;
-
-  const handleRegister = () => {
-    setIsRedirecting(true);
-    window.location.href = registerUrl;
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
       {/* Hero Section */}
@@ -83,7 +69,7 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
           </button>
 
           <button
-            onClick={handleRegister}
+            onClick={handleSignIn}
             disabled={isRedirecting}
             id="create-account-btn"
             className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm border border-slate-700/80 hover:border-wso2-500/50 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
