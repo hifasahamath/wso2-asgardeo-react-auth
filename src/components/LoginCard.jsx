@@ -9,7 +9,8 @@ import {
   CheckCircle, 
   Sparkles,
   Cpu,
-  Fingerprint
+  Fingerprint,
+  UserPlus
 } from 'lucide-react';
 
 export default function LoginCard({ onSignIn, onPreviewDemo }) {
@@ -46,12 +47,12 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
         </p>
 
         {/* Primary CTA & Interactive Preview controls */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 flex-wrap">
           <button
             onClick={handleSignIn}
             disabled={isRedirecting}
             id="signin-button"
-            className="w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-xl bg-gradient-to-r from-wso2-500 to-wso2-600 hover:from-wso2-600 hover:to-wso2-700 text-white font-semibold text-base shadow-xl shadow-wso2-500/25 hover:shadow-wso2-500/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 cursor-pointer group"
+            className="w-full sm:w-auto min-w-[200px] px-7 py-4 rounded-xl bg-gradient-to-r from-wso2-500 to-wso2-600 hover:from-wso2-600 hover:to-wso2-700 text-white font-semibold text-base shadow-xl shadow-wso2-500/25 hover:shadow-wso2-500/40 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 cursor-pointer group"
           >
             {isRedirecting ? (
               <>
@@ -67,69 +68,104 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
             )}
           </button>
 
+          <button
+            onClick={handleSignIn}
+            disabled={isRedirecting}
+            id="create-account-btn"
+            className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm border border-slate-700/80 hover:border-wso2-500/50 transition-all duration-200 flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
+          >
+            <UserPlus className="w-4 h-4 text-wso2-400 group-hover:scale-110 transition-transform" />
+            <span>Create Account / Sign Up</span>
+          </button>
+
           {onPreviewDemo && (
             <button
               onClick={onPreviewDemo}
               id="preview-demo-btn"
-              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-300 hover:text-white font-medium text-sm border border-slate-800 hover:border-slate-700 transition-all duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              className="w-full sm:w-auto px-5 py-4 rounded-xl bg-slate-900/60 hover:bg-slate-850 text-slate-400 hover:text-slate-200 font-medium text-xs border border-slate-800 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Cpu className="w-4 h-4 text-sky-400" />
-              <span>Preview Authenticated State</span>
+              <Cpu className="w-3.5 h-3.5 text-sky-400" />
+              <span>Preview Demo State</span>
             </button>
           )}
         </div>
       </div>
 
       {/* Feature Highlights Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
         {/* Card 1: OAuth 2.0 & OIDC */}
-        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-wso2-500/40 rounded-2xl p-6 transition-all duration-300 shadow-lg">
-          <div className="w-12 h-12 rounded-xl bg-wso2-500/10 border border-wso2-500/20 flex items-center justify-center text-wso2-400 mb-4 group-hover:scale-105 transition-transform">
-            <ShieldCheck className="w-6 h-6" />
+        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-wso2-500/40 rounded-2xl p-5 transition-all duration-300 shadow-lg flex flex-col justify-between">
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-wso2-500/10 border border-wso2-500/20 flex items-center justify-center text-wso2-400 mb-3 group-hover:scale-105 transition-transform">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              OAuth 2.0 & OIDC
+            </h3>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Standardized OpenID Connect protocols delivering verified user authentication, ID tokens, and secure claim assertions.
+            </p>
           </div>
-          <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-            OAuth 2.0 & OIDC
-          </h3>
-          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            Standardized OpenID Connect protocols delivering verified user authentication, ID tokens, and secure claim assertions.
-          </p>
-          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-xs text-wso2-400 font-medium">
-            <CheckCircle className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-[11px] text-wso2-400 font-medium">
+            <CheckCircle className="w-3 h-3 mr-1.5 text-emerald-400" />
             Standards-Compliant Identity
           </div>
         </div>
 
         {/* Card 2: PKCE Flow */}
-        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-sky-500/40 rounded-2xl p-6 transition-all duration-300 shadow-lg">
-          <div className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4 group-hover:scale-105 transition-transform">
-            <Fingerprint className="w-6 h-6" />
+        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-sky-500/40 rounded-2xl p-5 transition-all duration-300 shadow-lg flex flex-col justify-between">
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-3 group-hover:scale-105 transition-transform">
+              <Fingerprint className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              PKCE Authorization
+            </h3>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Proof Key for Code Exchange (RFC 7636) prevents authorization code interception attacks on public browser single-page apps.
+            </p>
           </div>
-          <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-            PKCE Authorization Flow
-          </h3>
-          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            Proof Key for Code Exchange (RFC 7636) prevents authorization code interception attacks on public browser single-page apps.
-          </p>
-          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-xs text-sky-400 font-medium">
-            <CheckCircle className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-[11px] text-sky-400 font-medium">
+            <CheckCircle className="w-3 h-3 mr-1.5 text-emerald-400" />
             Zero Client Secrets Stored
           </div>
         </div>
 
-        {/* Card 3: Secure Session Management */}
-        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-6 transition-all duration-300 shadow-lg">
-          <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform">
-            <Layers className="w-6 h-6" />
+        {/* Card 3: Self-Service Registration */}
+        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-5 transition-all duration-300 shadow-lg flex flex-col justify-between">
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-3 group-hover:scale-105 transition-transform">
+              <UserPlus className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              Self-Registration
+            </h3>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Automated user self-onboarding directly inside Asgardeo with password policy enforcement and cloud directory storage.
+            </p>
           </div>
-          <h3 className="text-base font-bold text-white mb-2 flex items-center gap-2">
-            Session & Claim Security
-          </h3>
-          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            Protected token lifecycle managed via the official SDK with seamless renewal, verified ID token parsing, and secure sign-out.
-          </p>
-          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-xs text-amber-400 font-medium">
-            <CheckCircle className="w-3.5 h-3.5 mr-1.5 text-emerald-400" />
-            Encrypted In-Memory Storage
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-[11px] text-emerald-400 font-medium">
+            <CheckCircle className="w-3 h-3 mr-1.5 text-emerald-400" />
+            Instant User Provisioning
+          </div>
+        </div>
+
+        {/* Card 4: Secure Session Management */}
+        <div className="relative group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-5 transition-all duration-300 shadow-lg flex flex-col justify-between">
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-3 group-hover:scale-105 transition-transform">
+              <Layers className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-white mb-1.5 flex items-center gap-2">
+              Session & Claims
+            </h3>
+            <p className="text-slate-400 text-xs leading-relaxed">
+              Protected token lifecycle with transparent silent renewal, verified ID token parsing, and secure single sign-out.
+            </p>
+          </div>
+          <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center text-[11px] text-amber-400 font-medium">
+            <CheckCircle className="w-3 h-3 mr-1.5 text-emerald-400" />
+            In-Memory Token Security
           </div>
         </div>
       </div>

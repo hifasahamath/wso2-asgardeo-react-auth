@@ -83,8 +83,9 @@ sequenceDiagram
 ## ✨ Key Features
 
 - 🛡️ **Standards-Compliant OIDC & OAuth 2.0**: Native PKCE implementation via the official `@asgardeo/auth-react` SDK.
+- 👤 **Self-Service Registration & Onboarding**: Seamless new user sign-up directly managed by WSO2 Asgardeo cloud directory.
 - 🎨 **Developer-First Aesthetics**: Sleek dark-mode interface with WSO2 brand accents, glassmorphism cards, and Lucide developer icons.
-- 🔍 **Interactive Token & Claims Inspector**: View decoded JWT claims (`sub`, `iss`, `aud`, `exp`, `iat`) with one-click clipboard copy.
+- 🔍 **Interactive Token & Claims Inspector**: View decoded JWT claims (`sub`, `iss`, `aud`, `exp`, `iat`, `email`) with one-click clipboard copy.
 - ⚡ **Zero-Error Fallback UX**: Graceful developer guidance screen when environment variables are unconfigured, preventing blank white screens.
 - 🔄 **Silent Token Renewal**: One-click session refreshing directly through Asgardeo's token endpoints.
 - 🚀 **Zero-Configuration Vercel Deployment**: Client-side routing rewrites configured via `vercel.json` to prevent 404s on browser reloads.
