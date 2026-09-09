@@ -89,6 +89,12 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
             </button>
           )}
         </div>
+
+        {/* User Onboarding Quick Tip */}
+        <p className="text-xs text-slate-400 pt-2 flex items-center justify-center gap-1.5 flex-wrap">
+          <Sparkles className="w-3.5 h-3.5 text-wso2-400" />
+          <span>New user? On the Asgardeo portal, click <strong className="text-wso2-400 font-semibold underline underline-offset-2">"Register"</strong> right below the Sign In button.</span>
+        </p>
       </div>
 
       {/* Feature Highlights Grid */}
