@@ -84,19 +84,32 @@ export default function Dashboard({
   };
 
   // Derive user display attributes with clean fallbacks
+  const rawUsername = 
+    decodedClaims?.username || 
+    basicUserInfo?.username || 
+    state?.username || 
+    decodedClaims?.sub || 
+    'asgardeo-user';
+
+  // Check if username is formatted as email
+  const isUsernameEmail = rawUsername && rawUsername.includes('@');
+
+  const email = 
+    decodedClaims?.email || 
+    basicUserInfo?.email || 
+    state?.email || 
+    (isUsernameEmail ? rawUsername : null) || 
+    'No primary email mapped';
+
   const displayName = 
     basicUserInfo?.displayName || 
     state?.displayName || 
     decodedClaims?.given_name || 
     decodedClaims?.name || 
-    state?.username || 
+    (isUsernameEmail ? rawUsername.split('@')[0] : rawUsername) || 
     'Asgardeo User';
 
-  const email = 
-    basicUserInfo?.email || 
-    state?.email || 
-    decodedClaims?.email || 
-    'No primary email mapped';
+  const hasEmailClaim = Boolean(decodedClaims?.email);
 
   const username = 
     basicUserInfo?.username || 
@@ -236,6 +249,26 @@ export default function Dashboard({
             </div>
           </div>
         </div>
+
+        {/* Optional IAM Tip when attributes are not yet mapped in Asgardeo */}
+        {!hasEmailClaim && (
+          <div className="mt-4 p-3 rounded-xl bg-sky-950/40 border border-sky-800/40 text-sky-300 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-sky-400 shrink-0" />
+              <span>
+                <strong>IAM Tip:</strong> To include verified <code>email</code>, <code>given_name</code>, and <code>family_name</code> claims in the ID token, enable them in <strong>Asgardeo Console &rarr; Applications &rarr; User Attributes</strong>.
+              </span>
+            </div>
+            <a 
+              href="https://console.asgardeo.io" 
+              target="_blank" 
+              rel="noreferrer"
+              className="text-sky-400 hover:text-white underline font-medium shrink-0"
+            >
+              Open Console &rarr;
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Token & Claims Inspector Section */}
