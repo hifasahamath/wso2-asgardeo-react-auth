@@ -26,11 +26,14 @@ export default function LoginCard({ onSignIn, onPreviewDemo }) {
     }
   };
 
-  // Derive Asgardeo organization direct registration URL
+  // Derive Asgardeo organization direct registration URL with application context
   const baseUrl = import.meta.env.VITE_ASGARDEO_BASE_URL || '';
+  const clientId = import.meta.env.VITE_ASGARDEO_CLIENT_ID || '';
   const orgMatch = baseUrl.match(/\/t\/([^/]+)/);
   const orgName = orgMatch ? orgMatch[1] : 'hifasahamath';
-  const registerUrl = `https://accounts.asgardeo.io/t/${orgName}/accounts/register`;
+  const registerUrl = clientId 
+    ? `https://accounts.asgardeo.io/t/${orgName}/accounts/register?client_id=${clientId}`
+    : `https://accounts.asgardeo.io/t/${orgName}/accounts/register`;
 
   const handleRegister = () => {
     setIsRedirecting(true);
