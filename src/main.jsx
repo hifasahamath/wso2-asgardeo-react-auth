@@ -90,22 +90,22 @@ VITE_ASGARDEO_POST_LOGOUT_URL=${window.location.origin}`;
             href="https://console.asgardeo.io"
             target="_blank"
             rel="noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-wso2-500 hover:bg-wso2-600 text-white font-medium text-sm transition-all duration-200 shadow-lg shadow-wso2-500/25"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-wso2-500 hover:bg-wso2-600 text-white font-medium text-xs transition-colors cursor-pointer"
           >
-            <Key className="w-4 h-4" />
-            Open Asgardeo Console
-            <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            <Key className="w-3.5 h-3.5" />
+            <span>Open Asgardeo Console</span>
+            <ExternalLink className="w-3 h-3 opacity-80" />
           </a>
           <button
             onClick={() => {
-              // Set temporary demo session keys to allow exploring the UI
+              sessionStorage.setItem('wso2_preview_session', 'true');
               sessionStorage.setItem('wso2_demo_preview', 'true');
               window.location.reload();
             }}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm transition-colors border border-slate-700"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-medium text-xs transition-colors border border-slate-700 cursor-pointer"
           >
-            <RefreshCw className="w-4 h-4 text-sky-400" />
-            Explore Demo Mode
+            <RefreshCw className="w-3.5 h-3.5 text-wso2-400" />
+            <span>Simulate Developer Session</span>
           </button>
         </div>
       </div>
@@ -114,21 +114,23 @@ VITE_ASGARDEO_POST_LOGOUT_URL=${window.location.origin}`;
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const isDemoActive = sessionStorage.getItem('wso2_demo_preview') === 'true';
+const isPreviewActive = 
+  sessionStorage.getItem('wso2_preview_session') === 'true' || 
+  sessionStorage.getItem('wso2_demo_preview') === 'true';
 
-if (isMissingConfig && !isDemoActive) {
+if (isMissingConfig && !isPreviewActive) {
   root.render(
     <React.StrictMode>
       <MissingConfigFallback />
     </React.StrictMode>
   );
 } else {
-  // If demo active without live credentials, provide fallback mock config to satisfy AuthProvider
+  // If simulation active without live credentials, provide fallback mock config to satisfy AuthProvider
   const safeConfig = isMissingConfig ? {
     signInRedirectURL: redirectUrl,
     signOutRedirectURL: postLogoutUrl,
-    clientID: 'demo-client-id',
-    baseUrl: 'https://api.asgardeo.io/t/demo-organization',
+    clientID: 'preview-client-id',
+    baseUrl: 'https://api.asgardeo.io/t/preview-organization',
     scope: ['openid', 'profile', 'email']
   } : authConfig;
 

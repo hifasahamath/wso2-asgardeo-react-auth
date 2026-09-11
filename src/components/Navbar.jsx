@@ -1,18 +1,18 @@
 import React from 'react';
-import { Shield, Github, ExternalLink, CheckCircle2, Lock } from 'lucide-react';
+import { Shield, Github, ExternalLink, Lock } from 'lucide-react';
 
 export default function Navbar({ isAuthenticated = false, user = null }) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-[#0a0e17]/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand & Badge */}
+        {/* Brand & Identity */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-wso2-600 to-wso2-400 text-white shadow-lg shadow-wso2-500/20">
-            <Shield className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-wso2-600 to-wso2-400 flex items-center justify-center text-white shadow-lg shadow-wso2-500/20">
+            <Shield className="w-5 h-5" />
           </div>
-          <div>
+          <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-white tracking-tight text-base sm:text-lg">
+              <span className="font-bold text-white tracking-tight text-base sm:text-lg leading-tight">
                 WSO2 Asgardeo
               </span>
               <span className="text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-wso2-500/10 text-wso2-400 border border-wso2-500/20">
@@ -25,53 +25,55 @@ export default function Navbar({ isAuthenticated = false, user = null }) {
           </div>
         </div>
 
-        {/* Status indicator & Navigation Links */}
+        {/* Right Section: Status Indicator & Links */}
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Live Auth Status */}
-          <div className={`hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium border ${
-            isAuthenticated
-              ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-              : 'bg-slate-800/60 text-slate-400 border-slate-700/60'
-          }`}>
+          {/* Status Badge */}
+          <div
+            className={`flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-medium border ${
+              isAuthenticated
+                ? 'bg-emerald-950/40 text-emerald-300 border-emerald-800/50'
+                : 'bg-slate-900/60 text-slate-400 border-slate-800'
+            }`}
+          >
             {isAuthenticated ? (
               <>
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Connected to Asgardeo</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span className="hidden sm:inline">Session Active</span>
+                <span className="sm:hidden">Active</span>
               </>
             ) : (
               <>
-                <Lock className="w-3.5 h-3.5 text-slate-400" />
-                <span>Unauthenticated</span>
+                <Lock className="w-3 h-3 text-slate-400" />
+                <span className="hidden sm:inline">Unauthenticated</span>
+                <span className="sm:hidden">Guest</span>
               </>
             )}
           </div>
 
-          {/* GitHub Repo link */}
-          <a
-            href="https://github.com/hifasahamath/wso2-asgardeo-react-auth.git"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub Repository"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-colors"
-          >
-            <Github className="w-4 h-4" />
-            <span className="hidden md:inline">Repository</span>
-          </a>
+          <div className="h-4 w-[1px] bg-slate-800 hidden sm:block" />
 
-          {/* Asgardeo Docs link */}
+          {/* Docs Link */}
           <a
             href="https://wso2.com/asgardeo/docs"
             target="_blank"
             rel="noreferrer"
             aria-label="Asgardeo Documentation"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-wso2-400 hover:text-wso2-300 bg-wso2-500/10 hover:bg-wso2-500/20 border border-wso2-500/20 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors"
           >
-            <span className="hidden md:inline">Docs</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <span>Docs</span>
+            <ExternalLink className="w-3 h-3 text-slate-400" />
+          </a>
+
+          {/* GitHub Repository */}
+          <a
+            href="https://github.com/hifasahamath/wso2-asgardeo-react-auth.git"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub Repository"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/80 transition-colors"
+          >
+            <Github className="w-3.5 h-3.5 text-slate-400" />
+            <span className="hidden md:inline">GitHub</span>
           </a>
         </div>
       </div>
